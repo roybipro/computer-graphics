@@ -1,4 +1,4 @@
-#include <OpenGL/gl.h>
+    #include <OpenGL/gl.h>
     #include <GLUT/glut.h>
     #include <OpenGL/glu.h>
     #include <OpenGL/glext.h>
