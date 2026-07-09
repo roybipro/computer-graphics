@@ -10,12 +10,10 @@ const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 const float PI = 3.1415926535f;
 
-// Sets a drawing color using 0-255 RGB values.
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -25,7 +23,6 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws Morocco's interlaced green pentagram as line segments.
 void drawPentagram(float centerX, float centerY, float radius) {
     float x[5], y[5];
     for (int i = 0; i < 5; ++i) {
@@ -45,7 +42,6 @@ void drawPentagram(float centerX, float centerY, float radius) {
     glLineWidth(1);
 }
 
-// Draws the complete Moroccan flag.
 void drawFlag() {
     setColor(193, 39, 45);
     drawRectangle(0, 0, 900, 600);

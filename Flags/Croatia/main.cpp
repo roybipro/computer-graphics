@@ -10,12 +10,10 @@ const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 const float PI = 3.1415926535f;
 
-// Sets a drawing color using 0-255 RGB values.
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -25,7 +23,6 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws a filled polygon circle approximation.
 void drawCircle(float centerX, float centerY, float radius, int segments) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
@@ -36,7 +33,6 @@ void drawCircle(float centerX, float centerY, float radius, int segments) {
     glEnd();
 }
 
-// Draws the lower shield outline.
 void drawShieldBase(float x, float y, float width, float height) {
     glBegin(GL_POLYGON);
     glVertex2f(x, y + height);
@@ -47,7 +43,6 @@ void drawShieldBase(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws a four-point checker cell.
 void drawCell(float x1, float y1, float x2, float y2) {
     glBegin(GL_QUADS);
     glVertex2f(x1, y1);
@@ -57,7 +52,6 @@ void drawCell(float x1, float y1, float x2, float y2) {
     glEnd();
 }
 
-// Draws a manually clipped polygon cell near the pointed bottom of the shield.
 void drawClippedCell(const float points[][2], int count) {
     glBegin(GL_POLYGON);
     for (int i = 0; i < count; ++i) {
@@ -66,7 +60,6 @@ void drawClippedCell(const float points[][2], int count) {
     glEnd();
 }
 
-// Draws the red and white checkerboard shield.
 void drawCheckerShield(float x, float y, float width, float height) {
     setColor(245, 245, 245);
     drawShieldBase(x, y, width, height);
@@ -110,7 +103,6 @@ void drawCheckerShield(float x, float y, float width, float height) {
     glLineWidth(1);
 }
 
-// Draws five simplified crown shields above the main shield.
 void drawCrown(float centerX, float baseY) {
     float shieldW = 42;
     for (int i = 0; i < 5; ++i) {
@@ -133,7 +125,6 @@ void drawCrown(float centerX, float baseY) {
     }
 }
 
-// Draws the complete Croatian flag.
 void drawFlag() {
     setColor(255, 0, 0);
     drawRectangle(0, 400, 900, 200);

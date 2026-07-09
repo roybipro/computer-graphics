@@ -10,12 +10,10 @@ const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 const float PI = 3.1415926535f;
 
-// Sets a drawing color using 0-255 RGB values.
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -25,7 +23,6 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws a filled triangle.
 void drawTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     glBegin(GL_TRIANGLES);
     glVertex2f(x1, y1);
@@ -34,7 +31,6 @@ void drawTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     glEnd();
 }
 
-// Draws a mathematically generated five-point star.
 void drawStar(float centerX, float centerY, float outerRadius, float innerRadius) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
@@ -46,7 +42,6 @@ void drawStar(float centerX, float centerY, float outerRadius, float innerRadius
     glEnd();
 }
 
-// Draws the Union Jack canton using layered manual polygons.
 void drawUnionJack(float x, float y, float width, float height) {
     setColor(1, 33, 105);
     drawRectangle(x, y, width, height);
@@ -76,7 +71,6 @@ void drawUnionJack(float x, float y, float width, float height) {
     glLineWidth(1);
 }
 
-// Draws one red Southern Cross star with a white border.
 void drawBorderedStar(float centerX, float centerY, float radius) {
     setColor(255, 255, 255);
     drawStar(centerX, centerY, radius, radius * 0.40f);
@@ -84,7 +78,6 @@ void drawBorderedStar(float centerX, float centerY, float radius) {
     drawStar(centerX, centerY, radius * 0.68f, radius * 0.27f);
 }
 
-// Draws the complete New Zealand flag.
 void drawFlag() {
     setColor(1, 33, 105);
     drawRectangle(0, 0, 900, 600);

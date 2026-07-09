@@ -9,12 +9,12 @@
 const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 
-// Sets a drawing color using 0-255 RGB values.
+
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
+
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -24,7 +24,7 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws the Canadian maple leaf from manually plotted normalized points.
+
 void drawMapleLeaf(float centerX, float centerY, float scale) {
     const float points[][2] = {
         {0.00f, 1.55f}, {-0.13f, 1.03f}, {-0.42f, 1.18f}, {-0.30f, 0.72f},
@@ -44,7 +44,7 @@ void drawMapleLeaf(float centerX, float centerY, float scale) {
     glEnd();
 }
 
-// Draws the complete Canadian flag in a 2:1 ratio.
+
 void drawFlag() {
     setColor(255, 255, 255);
     drawRectangle(0, 0, 900, 600);

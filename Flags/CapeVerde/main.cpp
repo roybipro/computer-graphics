@@ -10,12 +10,10 @@ const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 const float PI = 3.1415926535f;
 
-// Sets a drawing color using 0-255 RGB values.
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -25,7 +23,6 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws a mathematically generated five-point star.
 void drawStar(float centerX, float centerY, float outerRadius, float innerRadius) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
@@ -37,7 +34,6 @@ void drawStar(float centerX, float centerY, float outerRadius, float innerRadius
     glEnd();
 }
 
-// Draws ten yellow stars arranged in a circle.
 void drawStarCircle(float centerX, float centerY, float radius) {
     setColor(247, 209, 22);
     for (int i = 0; i < 10; ++i) {
@@ -48,7 +44,6 @@ void drawStarCircle(float centerX, float centerY, float radius) {
     }
 }
 
-// Draws the complete Cape Verdean flag.
 void drawFlag() {
     setColor(0, 56, 147);
     drawRectangle(0, 0, 900, 600);

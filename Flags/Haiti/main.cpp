@@ -10,12 +10,10 @@ const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 600;
 const float PI = 3.1415926535f;
 
-// Sets a drawing color using 0-255 RGB values.
 void setColor(float r, float g, float b) {
     glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 }
 
-// Draws a filled rectangle from its bottom-left corner.
 void drawRectangle(float x, float y, float width, float height) {
     glBegin(GL_QUADS);
     glVertex2f(x, y);
@@ -25,7 +23,6 @@ void drawRectangle(float x, float y, float width, float height) {
     glEnd();
 }
 
-// Draws a filled triangle.
 void drawTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     glBegin(GL_TRIANGLES);
     glVertex2f(x1, y1);
@@ -34,7 +31,6 @@ void drawTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     glEnd();
 }
 
-// Draws a filled polygon circle approximation.
 void drawCircle(float centerX, float centerY, float radius, int segments) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
@@ -45,7 +41,6 @@ void drawCircle(float centerX, float centerY, float radius, int segments) {
     glEnd();
 }
 
-// Draws a small cannon using primitive shapes.
 void drawCannon(float x, float y, bool flip) {
     float direction = flip ? -1.0f : 1.0f;
     setColor(120, 80, 35);
@@ -61,7 +56,6 @@ void drawCannon(float x, float y, bool flip) {
     drawCircle(x + direction * 50, y + 6, 10, 24);
 }
 
-// Draws Haiti's simplified coat of arms manually.
 void drawCoatOfArms(float centerX, float centerY) {
     setColor(255, 255, 255);
     drawRectangle(centerX - 145, centerY - 95, 290, 190);
@@ -99,7 +93,6 @@ void drawCoatOfArms(float centerX, float centerY) {
     drawRectangle(centerX - 85, centerY - 95, 170, 18);
 }
 
-// Draws the complete Haitian flag.
 void drawFlag() {
     setColor(0, 32, 159);
     drawRectangle(0, 300, 900, 300);
