@@ -68,7 +68,6 @@ void rotation()
         transformed[i].x =
             original[i].x * cos(radian)
             - original[i].y * sin(radian);
-
         transformed[i].y =
             original[i].x * sin(radian)
             + original[i].y * cos(radian);
