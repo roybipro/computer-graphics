@@ -14,6 +14,8 @@ const int WORLD_W = 1280, WORLD_H = 720;
 int windowW = WORLD_W, windowH = WORLD_H;
 float blink = 0, travel = 0, roverPhase = 0;
 float astronautOffset = 0;
+// W/S simulate the astronaut moving toward/away from the viewer in this 2D scene.
+float astronautScale = 1.0f;
 // 0 = Jupiter scene, 1 = space-flight transition, 2 = Saturn scene.
 int scene = 0, travelDirection = 1;
 void c(float r, float g, float b) { glColor3f(r, g, b); }
@@ -365,12 +367,12 @@ void drawJupiterScene() {
     beacon(540, 290, 30);
     drawDrone(694, 364, .85f);
     drawRover(620 + sin(roverPhase) * 75, 104, .78f, .75f, .77f, .82f);
-    drawAstronaut(865 + astronautOffset, 44, .85f);
+    drawAstronaut(865 + astronautOffset, 44, .85f * astronautScale);
     drawSign(1018, 57, "JUPITER BASE 01");
     drawRocket(350, 280, false, 1);
     text(42, 674, "JUPITER", GLUT_BITMAP_HELVETICA_18);
     text(44, 646, "ORANGE CLOUD OUTPOST");
-    text(506, 40, "CLICK ROCKET: BEGIN SPACE FLIGHT");
+    text(465, 40, "A/D: MOVE   W/S: ZOOM ASTRONAUT   CLICK ROCKET: BEGIN SPACE FLIGHT");
 }
 void drawSaturnScene() {
     drawSky();
@@ -385,12 +387,12 @@ void drawSaturnScene() {
     // Saturn's rover and astronaut use a cooler palette, unlike the Jupiter outpost crew.
     drawDrone(728, 364, .75f);
     drawRover(604 - sin(roverPhase) * 70, 106, .56f, .70f, .71f, .78f);
-    drawAstronaut(770 + astronautOffset, 38, .88f);
+    drawAstronaut(770 + astronautOffset, 38, .88f * astronautScale);
     drawSign(1017, 57, "SATURN BASE 01");
     drawRocket(1010, 280, false, -1);
     text(1010, 674, "SATURN", GLUT_BITMAP_HELVETICA_18);
     text(946, 646, "RING RESEARCH STATION");
-    text(490, 40, "CLICK ROCKET: RETURN THROUGH SPACE");
+    text(450, 40, "A/D: MOVE   W/S: ZOOM ASTRONAUT   CLICK ROCKET: RETURN THROUGH SPACE");
 }
 void drawTransition() {
     drawSky();
@@ -456,11 +458,16 @@ void mouse(int b, int state, int mx, int my) {
 }
 void key(unsigned char k, int, int) {
     const float moveAmount = 18.0f;
+    const float scaleAmount = .08f;
 
     if (k == 'a' || k == 'A') astronautOffset -= moveAmount;
     if (k == 'd' || k == 'D') astronautOffset += moveAmount;
+    if (k == 'w' || k == 'W') astronautScale += scaleAmount;
+    if (k == 's' || k == 'S') astronautScale -= scaleAmount;
     if (astronautOffset < -320.0f) astronautOffset = -320.0f;
     if (astronautOffset > 320.0f) astronautOffset = 320.0f;
+    if (astronautScale < .45f) astronautScale = .45f;
+    if (astronautScale > 2.25f) astronautScale = 2.25f;
     if (k == 27 || k == 'q' || k == 'Q') std::exit(0);
 
     glutPostRedisplay();
