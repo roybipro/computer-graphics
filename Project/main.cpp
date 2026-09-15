@@ -1,5 +1,4 @@
 // Interplanetary Outposts - immediate-mode OpenGL / GLUT project.
-// Click the rocket to travel from Jupiter Outpost to Saturn Ring Station.
 // macOS build: g++ -std=c++11 -DGL_SILENCE_DEPRECATION main.cpp -o interplanetary -framework OpenGL
 // -framework GLUT
 #include <GLUT/glut.h>
@@ -14,9 +13,8 @@ const int WORLD_W = 1280, WORLD_H = 720;
 int windowW = WORLD_W, windowH = WORLD_H;
 float blink = 0, travel = 0, roverPhase = 0;
 float astronautOffset = 0;
-// W/S simulate the astronaut moving toward/away from the viewer in this 2D scene.
 float astronautScale = 1.0f;
-// 0 = Jupiter scene, 1 = space-flight transition, 2 = Saturn scene.
+float saturnRingAngle = -11.0f;
 int scene = 0, travelDirection = 1;
 void c(float r, float g, float b) { glColor3f(r, g, b); }
 void rect(float x, float y, float X, float Y, float r, float g, float b) {
@@ -134,7 +132,7 @@ void drawSaturn() {
     shape(d, 4, .95f, .73f, .42f);
     glPushMatrix();
     glTranslatef(x, y, 0);
-    glRotatef(-11, 0, 0, 1);
+    glRotatef(saturnRingAngle, 0, 0, 1);
     oval(0, 0, 264, 22, .49f, .35f, .25f, 80);
     oval(0, 0, 222, 13, .91f, .69f, .40f, 80);
     oval(0, 0, 168, 6, .34f, .25f, .20f, 80);
@@ -332,7 +330,6 @@ void jupiterSurfaceTexture() {
     shadow(865, 35, 46, 7);
 }
 void saturnSurfaceTexture() {
-    // Cool ice plates, lilac ridges and long violet shadows distinguish Saturn's ground.
     const float a[][2] = {{0, 68}, {116, 142}, {199, 72}, {136, 18}};
     shape(a, 4, .35f, .32f, .52f);
     const float b[][2] = {{230, 80}, {345, 151}, {448, 79}, {369, 24}};
@@ -354,12 +351,10 @@ void saturnSurfaceTexture() {
 void drawJupiterScene() {
     drawSky();
     drawSun();
-    // From Jupiter Outpost, Saturn is the planet visible in the sky.
     drawSaturn();
     jupiterGround();
     jupiterSurfaceTexture();
     drawJupiterBase();
-    // Extra connected laboratory pods make Jupiter's base broad and industrial.
     disk(540, 256, 43, .78f, .80f, .86f, 24);
     rect(497, 212, 583, 256, .74f, .76f, .83f);
     rect(458, 238, 497, 250, .13f, .16f, .23f);
@@ -376,7 +371,6 @@ void drawJupiterScene() {
 }
 void drawSaturnScene() {
     drawSky();
-    // From Saturn Ring Station, Jupiter is the planet visible in the sky.
     drawJupiter();
     disk(210, 548, 42, .45f, .42f, .48f, 18);
     disk(197, 560, 12, .30f, .28f, .35f, 12);
@@ -384,7 +378,6 @@ void drawSaturnScene() {
     saturnSurfaceTexture();
     drawSaturnBase();
     drawDish(842, 250);
-    // Saturn's rover and astronaut use a cooler palette, unlike the Jupiter outpost crew.
     drawDrone(728, 364, .75f);
     drawRover(604 - sin(roverPhase) * 70, 106, .56f, .70f, .71f, .78f);
     drawAstronaut(770 + astronautOffset, 38, .88f * astronautScale);
@@ -398,7 +391,6 @@ void drawTransition() {
     drawSky();
     text(489, 650, "DEEP SPACE TRANSIT", GLUT_BITMAP_HELVETICA_18);
     text(475, 620, "JUPITER OUTPOST  ->  SATURN RING STATION");
-    // Distant departure and destination planets are visible only during this flight scene.
     disk(95, 365, 66, .74f, .32f, .13f, 40);
     oval(1185, 380, 87, 21, .67f, .49f, .30f, 40);
     disk(1185, 380, 52, .87f, .66f, .38f, 40);
@@ -443,6 +435,10 @@ void timer(int) {
             travel = 0;
         }
     }
+    saturnRingAngle += 0.5f;
+    if (saturnRingAngle >= 360.0f)
+    saturnRingAngle -= 360.0f;
+
     glutPostRedisplay();
     glutTimerFunc(16, timer, 0);
 }
