@@ -354,6 +354,8 @@ void drawJupiterScene() {
     drawSun();
     disk(540, 256, 43, .78f, .80f, .86f, 24);
     disk(540, 256, 43, .78f, .80f, .86f, 24);
+    drawJupiter();
+    drawSun();
     drawSaturn();
     jupiterGround();
     jupiterSurfaceTexture();
