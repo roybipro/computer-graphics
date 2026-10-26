@@ -356,12 +356,16 @@ void drawJupiterScene() {
     disk(540, 256, 43, .78f, .80f, .86f, 24);
     drawJupiter();
     drawSun();
+
+
     drawSaturn();
     jupiterGround();
     jupiterSurfaceTexture();
     drawJupiterBase();
     disk(540, 256, 43, .78f, .80f, .86f, 24);
     rect(497, 212, 583, 256, .74f, .76f, .83f);
+    rect(458, 212, 497, 256, .74f, .76f, .83f);
+    rect(583, 212, 628, 256, .74f, .76f, .83f);
     rect(458, 238, 497, 250, .13f, .16f, .23f);
     rect(583, 238, 628, 250, .13f, .16f, .23f);
     beacon(540, 290, 30);
