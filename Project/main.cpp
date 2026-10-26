@@ -136,6 +136,7 @@ void drawSaturn() {
     oval(0, 0, 264, 22, .49f, .35f, .25f, 80);
     oval(0, 0, 222, 13, .91f, .69f, .40f, 80);
     oval(0, 0, 168, 6, .34f, .25f, .20f, 80);
+
     glPopMatrix();
 }
 void mountains() {
@@ -351,6 +352,8 @@ void saturnSurfaceTexture() {
 void drawJupiterScene() {
     drawSky();
     drawSun();
+    disk(540, 256, 43, .78f, .80f, .86f, 24);
+    disk(540, 256, 43, .78f, .80f, .86f, 24);
     drawSaturn();
     jupiterGround();
     jupiterSurfaceTexture();
